@@ -5,9 +5,9 @@ The class can be found in pmid_file_handler.py.
 A usage example can be found in example_pmid_file_handler.py.
 
 The following python libraries are needed:
-OptionParser
-codecs
-cPickle
-os
-Bio
-sys
+- OptionParser
+- codecs
+- cPickle
+- os
+- Bio
+- sys
