@@ -7,8 +7,8 @@ Author: Tilia Ellendorff
 Version: March 2015
 
 """
-from __future__ import division
-from __future__ import unicode_literals
+#from __future__ import division
+#from __future__ import unicode_literals
 from optparse import OptionParser
 import xml.etree.cElementTree as ET
 import codecs
@@ -17,12 +17,12 @@ import cPickle as pickle
 import os
 from Bio import Entrez
 import codecs
-import shutil
-import random
-import nltk
-import collections
-import nltk.metrics
-from nltk import word_tokenize, wordpunct_tokenize
+#import shutil
+#import random
+#import nltk
+#import collections
+#import nltk.metrics
+#from nltk import word_tokenize, wordpunct_tokenize
 
 # Prevent Encoding exceptions in Python 2.x
 sys.stdout = codecs.getwriter('utf-8')(sys.__stdout__)
@@ -38,7 +38,7 @@ class Pubmed_dump_file(object):
         self.path = dump_dir + pmid
         self.dump_dir = dump_dir
 
-        print os.listdir(self.dump_dir)
+        #print os.listdir(self.dump_dir)
 
         if not self.pmid in os.listdir(self.dump_dir):
             print 'ATTEMPT TO DOWNLOAD DATA FOR', self.pmid
