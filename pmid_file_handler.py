@@ -85,12 +85,33 @@ class Pubmed_dump_file(object):
                 return ' '.join(abstract)
 
             else:
-                abstract_list = [unicode(abstract[i]) for i in range(len(abstract))]
-                #abstract_list = [unicode(StringElementNew(abstract[i])) for i in range(len(abstract))]
-                #abstract_list = [StringElementNew(abstract[i]).string_text() for i in range(len(abstract))]
+                abstract_list = []
+                for i in range(len(abstract)):
+                    one_abstract_section = abstract[i]
+                    one_abstract_section_string = unicode(abstract[i])
+                    print one_abstract_section_string
+                    one_abstract_section_attr = one_abstract_section.attributes
+                    print one_abstract_section_attr
+                    
+                    try:
+                        # Add abstract headings, such as BACKGROUND; make this optional?
+                        
+                        abstract_label = one_abstract_section_attr[u'Label']
+                        new_abstract_section_string = abstract_label + ': ' + one_abstract_section_string
+                        
+                        if not new_abstract_section_string.endswith(u'.'):
+                            new_abstract_section_string = new_abstract_section_string + u'.'
+                            
+                        print new_abstract_section_string
+                        print '\n'
+                        abstract_list.append(new_abstract_section_string)
+                    except KeyError:
+                        abstract_list.append(one_abstract_section_string)
+                    
+                #abstract_list = [unicode(abstract[i]) for i in range(len(abstract))]
+           
                 abstract_string = ' '.join(abstract_list)
                 return abstract_string
-
 
         except (IndexError, KeyError, AttributeError):
             return None
