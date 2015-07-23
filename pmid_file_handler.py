@@ -99,8 +99,8 @@ class Pubmed_dump_file(object):
                         abstract_label = one_abstract_section_attr[u'Label']
                         new_abstract_section_string = abstract_label + ': ' + one_abstract_section_string
                         
-                        if not new_abstract_section_string.endswith(u'.'):
-                            new_abstract_section_string = new_abstract_section_string + u'.'
+                        # if not new_abstract_section_string.endswith(u'.'):
+#                             new_abstract_section_string = new_abstract_section_string + u'.'
                             
                         print new_abstract_section_string
                         print '\n'
