@@ -187,5 +187,18 @@ class Pubmed_dump_file(object):
 
         except (IndexError, KeyError, TypeError):
             return None
+            
+            
+    def get_abstract_minus_mesh_dict(self):
+        try:
+            whole_abstract_dict = {}
+            whole_abstract_dict['pmid'] = self.pmid
+            whole_abstract_dict['title'] = self.get_title()
+            whole_abstract_dict['abstract'] = self.get_abstract()
+
+            return whole_abstract_dict
+
+        except (IndexError, KeyError, TypeError):
+            return None
 
 
