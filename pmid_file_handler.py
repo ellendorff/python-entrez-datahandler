@@ -53,7 +53,7 @@ class Pubmed_dump_file(object):
             return None
 
 
-    def download_pmid_data(self, entrez_email, options=None, args=None):
+    def download_pmid_data(self, entrez_email=None, options=None, args=None):
 
         if entrez_email == None:
             print 'DOWNLOAD OF NEW DATA CANNOT BE COMPLETED, PLEASE GIVE YOUR EMAIL.'
@@ -89,9 +89,9 @@ class Pubmed_dump_file(object):
                 for i in range(len(abstract)):
                     one_abstract_section = abstract[i]
                     one_abstract_section_string = unicode(abstract[i])
-                    print one_abstract_section_string
+                    #print one_abstract_section_string
                     one_abstract_section_attr = one_abstract_section.attributes
-                    print one_abstract_section_attr
+                    #print one_abstract_section_attr
                     
                     try:
                         # Add abstract headings, such as BACKGROUND; make this optional?
@@ -102,8 +102,8 @@ class Pubmed_dump_file(object):
                         # if not new_abstract_section_string.endswith(u'.'):
 #                             new_abstract_section_string = new_abstract_section_string + u'.'
                             
-                        print new_abstract_section_string
-                        print '\n'
+                        #print new_abstract_section_string
+                        #print '\n'
                         abstract_list.append(new_abstract_section_string)
                     except KeyError:
                         abstract_list.append(one_abstract_section_string)
@@ -158,6 +158,17 @@ class Pubmed_dump_file(object):
             qualifier_list = list(set(sum([[unicode(item) for item in mesh_list[i][u'QualifierName']] for i in range(len(mesh_list))], [])))
             return '; '.join(qualifier_list)
         except (IndexError, KeyError):
+            return None
+            
+    def get_abstract_text(self, options=None, args=None):
+        try:
+            abstract_text_list = []
+            abstract_text_list.append(self.get_title())
+            abstract_text_list.append(self.get_abstract())
+            
+            return ' '.join(abstract_text_list)
+            
+        except (IndexError, KeyError, TypeError):
             return None
 
 
